@@ -6,12 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using ToDoApp.Business.Abstract;
 using ToDoApp.Business.Repositories;
+using ToDoApp.Business.ValidationRules.FluentValidation;
+using ToDoApp.Core.Aspects.Autofac.Validation;
 using ToDoApp.Core.Results;
 using ToDoApp.Entities.Concrate;
 using ToDoApp.Entities.DTOs;
 
 namespace ToDoApp.Business.Concrate
 {
+    [ValidationAspect(typeof(ToDoItemInsertValidator))]
+
     public class ToDoItemManager : IToDoItemService
     {
         private readonly IUnitOfWork _unitOfWork;
