@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ToDoApp.DataAccess.Context;
@@ -11,9 +12,11 @@ using ToDoApp.DataAccess.Context;
 namespace ToDoApp.DataAccess.Migrations
 {
     [DbContext(typeof(BackendContext))]
-    partial class BackendContextModelSnapshot : ModelSnapshot
+    [Migration("20240820084219_initial2")]
+    partial class initial2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,22 +25,7 @@ namespace ToDoApp.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseSerialColumns(modelBuilder);
 
-            modelBuilder.Entity("ToDoApp.Core.Entities.Concrate.OperationClaim", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OperationClaims");
-                });
-
-            modelBuilder.Entity("ToDoApp.Core.Entities.Concrate.ToDoItem", b =>
+            modelBuilder.Entity("ToDoApp.Entities.Concrate.ToDoItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,7 +64,7 @@ namespace ToDoApp.DataAccess.Migrations
                     b.ToTable("ToDoItems");
                 });
 
-            modelBuilder.Entity("ToDoApp.Core.Entities.Concrate.User", b =>
+            modelBuilder.Entity("ToDoApp.Entities.Concrate.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,26 +94,9 @@ namespace ToDoApp.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ToDoApp.Core.Entities.Concrate.UserOperationClaim", b =>
+            modelBuilder.Entity("ToDoApp.Entities.Concrate.ToDoItem", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("OperationClaimId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserOperationClaims");
-                });
-
-            modelBuilder.Entity("ToDoApp.Core.Entities.Concrate.ToDoItem", b =>
-                {
-                    b.HasOne("ToDoApp.Core.Entities.Concrate.User", "User")
+                    b.HasOne("ToDoApp.Entities.Concrate.User", "User")
                         .WithMany("ToDoItems")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -134,7 +105,7 @@ namespace ToDoApp.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ToDoApp.Core.Entities.Concrate.User", b =>
+            modelBuilder.Entity("ToDoApp.Entities.Concrate.User", b =>
                 {
                     b.Navigation("ToDoItems");
                 });

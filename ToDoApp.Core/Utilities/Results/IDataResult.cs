@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoApp.Core.Results
+namespace ToDoApp.Core.Utilities.Results
 {
-    public interface IResult
+    public interface IDataResult<T> : IResult
     {
-        bool Success { get; }
+        T Data { get; }
 
-        string Message { get; }
     }
 }

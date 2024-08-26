@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToDoApp.Entities.Concrate;
+using ToDoApp.Core.Entities.Concrate;
+
 
 namespace ToDoApp.DataAccess.Context
 {
@@ -23,6 +24,10 @@ namespace ToDoApp.DataAccess.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<ToDoItem> ToDoItems { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseSerialColumns();

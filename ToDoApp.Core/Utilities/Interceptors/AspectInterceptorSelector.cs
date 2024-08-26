@@ -6,12 +6,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoApp.Core.Interceptors
+namespace ToDoApp.Core.Utilities.Interceptors
 {
     public class AspectInterceptorSelector : IInterceptorSelector
     {
 
-        public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, Castle.DynamicProxy.IInterceptor[] interceptors)
+        public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)
         {
             var classAttributes = type.GetCustomAttributes<MethodInterceptionBaseAttribute>
                 (true).ToList();

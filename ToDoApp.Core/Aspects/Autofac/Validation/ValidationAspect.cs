@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoApp.Core.CrossCuttingCorners.Validation;
-using ToDoApp.Core.Interceptors;
+using ToDoApp.Core.Utilities.Interceptors;
 
 namespace ToDoApp.Core.Aspects.Autofac.Validation
 {

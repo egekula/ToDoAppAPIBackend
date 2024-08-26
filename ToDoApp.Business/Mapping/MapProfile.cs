@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToDoApp.Entities.Concrate;
+using ToDoApp.Core.Entities.Concrate;
 using ToDoApp.Entities.DTOs;
 
 namespace ToDoApp.Business.Mapping

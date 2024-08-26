@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoApp.Core.Results
+namespace ToDoApp.Core.Utilities.Results
 {
     public class ErrorResult : Result
     {

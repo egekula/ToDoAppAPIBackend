@@ -13,6 +13,7 @@ namespace ToDoApp.Core.DataAccess
         IQueryable<T> Table { get; }
         IQueryable<T> AsNoTracking { get; }
         Task<T> GetByIdAsync(Guid id);
+        Task<T> Get(Expression<Func<T, bool>> filter);
 
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);
 

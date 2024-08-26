@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoApp.Business.Abstract;
+using ToDoApp.Business.BusinessAspect.Autofac;
 using ToDoApp.Business.Repositories;
 using ToDoApp.Business.ValidationRules.FluentValidation;
 using ToDoApp.Core.Aspects.Autofac.Validation;
-using ToDoApp.Core.Results;
-using ToDoApp.Entities.Concrate;
+using ToDoApp.Core.Entities.Concrate;
+using ToDoApp.Core.Utilities.Results;
 using ToDoApp.Entities.DTOs;
 
 namespace ToDoApp.Business.Concrate
@@ -25,6 +26,7 @@ namespace ToDoApp.Business.Concrate
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
+        [SecuredOperation("todo.add,admin")]
 
         public async Task<IDataResult<ToDoItemInsertDto>> AddAsync(ToDoItemInsertDto dto)
         {

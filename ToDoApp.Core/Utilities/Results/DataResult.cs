@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoApp.Core.Results
+namespace ToDoApp.Core.Utilities.Results
 {
-    public class DataResult<T> :  Result,IDataResult<T>
+    public class DataResult<T> : Result, IDataResult<T>
     {
         public DataResult(T data, bool success, string message) : base(success, message)
         {

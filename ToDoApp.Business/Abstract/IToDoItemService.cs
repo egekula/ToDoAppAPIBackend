@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToDoApp.Core.Results;
-using ToDoApp.Entities.Concrate;
+using ToDoApp.Core.Utilities.Results;
 using ToDoApp.Entities.DTOs;
 
 namespace ToDoApp.Business.Abstract

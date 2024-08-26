@@ -63,5 +63,10 @@ namespace ToDoApp.Core.DataAccess.EntityFramework
         {
             Entities.Update(entity);
         }
+
+        public async Task<T> Get(Expression<Func<T, bool>> filter)
+        {
+            return await Entities.SingleOrDefaultAsync(filter);
+        }
     }
 }

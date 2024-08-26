@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ToDoApp.Core.Entities;
 
-namespace ToDoApp.Entities.Concrate
+namespace ToDoApp.Core.Entities.Concrate
 {
     public class User : IEntity
     {
         public Guid Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public ICollection<ToDoItem> ToDoItems { get; set; } = null!; 
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+        public bool Status { get; set; }
+        public ICollection<ToDoItem> ToDoItems { get; set; } = null!;
 
     }
 }

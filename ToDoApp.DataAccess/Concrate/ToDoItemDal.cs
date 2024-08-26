@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoApp.Core.DataAccess.EntityFramework;
+using ToDoApp.Core.Entities.Concrate;
 using ToDoApp.DataAccess.Abstract;
 using ToDoApp.DataAccess.Context;
-using ToDoApp.Entities.Concrate;
 
 namespace ToDoApp.DataAccess.Concrate
 {

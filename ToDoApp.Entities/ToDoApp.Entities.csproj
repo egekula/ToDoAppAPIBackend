@@ -10,4 +10,8 @@
     <ProjectReference Include="..\ToDoApp.Core\ToDoApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrate\" />
+  </ItemGroup>
+
 </Project>
