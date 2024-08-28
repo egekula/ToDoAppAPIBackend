@@ -8,6 +8,7 @@ using ToDoApp.Business.Abstract;
 using ToDoApp.Business.BusinessAspect.Autofac;
 using ToDoApp.Business.Repositories;
 using ToDoApp.Business.ValidationRules.FluentValidation;
+using ToDoApp.Core.Aspects.Autofac.Caching;
 using ToDoApp.Core.Aspects.Autofac.Validation;
 using ToDoApp.Core.Entities.Concrate;
 using ToDoApp.Core.Utilities.Results;
@@ -27,13 +28,14 @@ namespace ToDoApp.Business.Concrate
             _mapper = mapper;
         }
         [SecuredOperation("todo.add,admin")]
-
+        [CacheRemoveAspect("IToDoItemService.Get")]
         public async Task<IDataResult<ToDoItemInsertDto>> AddAsync(ToDoItemInsertDto dto)
         {
             await _unitOfWork.ToDoItemDal.AddAsync(_mapper.Map<ToDoItem>(dto));
             await _unitOfWork.CommitAsync();
             return new SuccessDataResult<ToDoItemInsertDto>(dto,"İşlem Başarılı");
         }
+        [CacheAspect]
 
         public async Task<IDataResult<List<ToDoItemDto>>> GetAllAsync()
         {
@@ -42,6 +44,7 @@ namespace ToDoApp.Business.Concrate
             return new SuccessDataResult<List<ToDoItemDto>>(toDoItemDto,"İşlem Başarılı");
         }
 
+        [CacheAspect]
         public async Task<IDataResult<ToDoItemDto>> GetByIdAsync(Guid id)
         {
             var data = await _unitOfWork.ToDoItemDal.GetByIdAsync(id);
@@ -60,6 +63,7 @@ namespace ToDoApp.Business.Concrate
             await _unitOfWork.CommitAsync();
             return new SuccessResult("Ürün Başarıyla kaldırıldı.");
         }
+        [CacheRemoveAspect("IToDoItemService.Get")]
 
         public async Task<IResult> UpdateAsync(ToDoItemDto dto)
         {
