@@ -14,7 +14,7 @@ namespace ToDoApp.Business.Abstract
         Task<IDataResult<ToDoItemInsertDto>> AddAsync(ToDoItemInsertDto dto);
         Task<IDataResult<List<ToDoItemDto>>> GetAllAsync();
         Task<IDataResult<ToDoItemDto>> GetByIdAsync(Guid id);
-        Task<IResult> UpdateAsync(ToDoItemDto dto);
+        Task<IResult> UpdateAsync(Guid id,ToDoItemUpdateDto dto);
         Task<IResult> RemoveAsync(Guid id);
     }
 }

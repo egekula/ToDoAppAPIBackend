@@ -27,7 +27,7 @@ namespace ToDoApp.Business.Concrate
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        [SecuredOperation("todo.add,admin")]
+        //[SecuredOperation("todo.add,admin")]
         [CacheRemoveAspect("IToDoItemService.Get")]
         public async Task<IDataResult<ToDoItemInsertDto>> AddAsync(ToDoItemInsertDto dto)
         {
@@ -65,11 +65,26 @@ namespace ToDoApp.Business.Concrate
         }
         [CacheRemoveAspect("IToDoItemService.Get")]
 
-        public async Task<IResult> UpdateAsync(ToDoItemDto dto)
+        public async Task<IResult> UpdateAsync(Guid id, ToDoItemUpdateDto dto)
         {
-            _unitOfWork.ToDoItemDal.Update(_mapper.Map<ToDoItem>(dto));
+            // Veritabanından id ile mevcut veriyi getir
+            var existingToDoItem = await _unitOfWork.ToDoItemDal.GetByIdAsync(id);
+
+            // Veri bulunamadıysa hata döndür
+            if (existingToDoItem == null)
+            {
+                return new ErrorResult("Bu idye sahip ürün bulunamadı");
+            }
+
+            // Automapper kullanarak DTO'dan gelen verileri mevcut veri üzerine uygula
+            _mapper.Map(dto, existingToDoItem);
+
+            // Güncellemeyi kaydet
+            _unitOfWork.ToDoItemDal.Update(existingToDoItem);
             await _unitOfWork.CommitAsync();
+
             return new SuccessResult("Ürün başarıyla güncellendi");
         }
+
     }
 }

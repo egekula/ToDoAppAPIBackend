@@ -16,6 +16,7 @@ namespace ToDoApp.Business.Mapping
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<ToDoItem, ToDoItemDto>().ReverseMap();
             CreateMap<ToDoItemInsertDto, ToDoItem>();
+            CreateMap<ToDoItemUpdateDto, ToDoItem>().ReverseMap();
         }
 
     }

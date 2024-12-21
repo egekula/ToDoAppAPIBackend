@@ -44,10 +44,10 @@ namespace WebAPI.Controllers
             }
             return BadRequest(res);
         }
-        [HttpPut]
-        public async Task<IActionResult> Update(ToDoItemDto dto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id,ToDoItemUpdateDto dto)
         {
-            var res = await _service.UpdateAsync(dto);
+            var res = await _service.UpdateAsync(id,dto);
             if (res.Success)
             {
                 return Ok(res);
